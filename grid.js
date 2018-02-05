@@ -5,33 +5,29 @@ Vue.component('demo-grid', {
   props: {
     numrowscols: Number,
     colnames: Array,
-    //TODO: study how to be able to camelcase rownames in Vue
+    //TODO: study how to be able to camel case rownames, etc. in Vue
     rownames: Array,
-    matrix: Array,
-    //numRows: Number,
-    //numCols: Number,
-
-  },
-  data: function () {
-    var identityMatrix = math.eye(8);
-    return {
-      iMatrix: identityMatrix,
-    }
   },
   /*
-  computed: {
-    matrix: function () {
-      return 7;
-      return (((math.Matrix)(this.identityMatrix)).subset(index(rowIdx, colIdx)));
-      //return this.identityMatrix.subset(math.index(rowIdx, colIdx));
+  data: function () {
+    return {
+      something: 42
     }
   },
   */
+  computed: {
+    matrixAsArray: function () {
+      var mat = math.eye(8);
+      return mat.valueOf();
+    }
+  },
   methods: {
+    /*
     sortBy: function (key) {
       this.sortKey = key
       this.sortOrders[key] = this.sortOrders[key] * -1
     }
+    */
   }
 })
 
@@ -39,9 +35,9 @@ Vue.component('demo-grid', {
 var demo = new Vue({
   el: '#demo',
   data: {
-    gridNumRowsCols: 4,
-    gridRowNames: ['C4', 'D4', 'E4', 'F4'],
-    gridColNames: ["C4'", "D4'", "E4'", "F4'"],
+    gridNumRowsCols: 8,
+    gridRowNames: ['C4', 'D4', 'E4', 'F4', 'G4', 'A4', 'B4', 'C5'],
+    gridColNames: ["C4'", "D4'", "E4'", "F4'", "G4'", "A4'", "B4'", "C5'"],
     gridMatrix: [8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8]
   }
 })

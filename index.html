@@ -21,10 +21,10 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="row in numrowscols">
-            <th>{{rownames[row - 1]}}</th>
-            <td v-for="col in numrowscols">
-              {{matrix[((row - 1) * 4) + (col - 1)]}}
+          <tr v-for="(rowArray, rowIdx) in matrixAsArray">
+            <th>{{rownames[rowIdx]}}</th>
+            <td v-for="(colNum, colIdx) in numrowscols">
+              {{matrixAsArray[rowIdx][colIdx]}}
             </td>
           </tr>
         </tbody>
@@ -36,8 +36,8 @@
       <demo-grid
         :numrowscols="gridNumRowsCols"
         :rownames="gridRowNames"
-        :colnames="gridColNames"
-        :matrix="gridMatrix">
+        :colnames="gridColNames">
+        <!--:matrix="gridMatrix"-->
       </demo-grid>
     </div>
 
