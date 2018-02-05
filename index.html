@@ -5,6 +5,7 @@
     <title>Quantum Music</title>
     <link rel="stylesheet" href="style.css">
     <script src="scripts/vue.js"></script>
+    <script src="scripts/math.js"></script>
   </head>
 
   <body>
@@ -14,15 +15,16 @@
         <thead>
           <tr>
             <th></th>
-            <th v-for="pitchName in columns">
-              {{pitchName}}
+            <th v-for="col in numrowscols">
+              {{colnames[col - 1]}}
             </th>
           </tr>
         </thead>
         <tbody>
-          <tr v-for="row in rownames">
-            <th>{{row}}</th><td v-for="col in 8">
-              {{((row - 1) * 8) + col - 1}}
+          <tr v-for="row in numrowscols">
+            <th>{{rownames[row - 1]}}</th>
+            <td v-for="col in numrowscols">
+              {{matrix[((row - 1) * 4) + (col - 1)]}}
             </td>
           </tr>
         </tbody>
@@ -32,9 +34,10 @@
     <!-- demo root element -->
     <div id="demo">
       <demo-grid
-        :data="gridData"
+        :numrowscols="gridNumRowsCols"
         :rownames="gridRowNames"
-        :columns="gridColumns">
+        :colnames="gridColNames"
+        :matrix="gridMatrix">
       </demo-grid>
     </div>
 

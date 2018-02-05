@@ -3,54 +3,45 @@ Vue.component('demo-grid', {
   template: '#matrix-template',
   replace: true,
   props: {
-    //data: Array,
-    columns: Array,
+    numrowscols: Number,
+    colnames: Array,
     //TODO: study how to be able to camelcase rownames in Vue
     rownames: Array,
+    matrix: Array,
     //numRows: Number,
     //numCols: Number,
 
   },
-  /*
   data: function () {
-    /*
-    this.columns.forEach(function (key) {
-      sortOrders[key] = 1
-    })
+    var identityMatrix = math.eye(8);
     return {
-      sortKey: '',
-      sortOrders: sortOrders
+      iMatrix: identityMatrix,
+    }
+  },
+  /*
+  computed: {
+    matrix: function () {
+      return 7;
+      return (((math.Matrix)(this.identityMatrix)).subset(index(rowIdx, colIdx)));
+      //return this.identityMatrix.subset(math.index(rowIdx, colIdx));
     }
   },
   */
-  computed: {
-    /*
-    filters: {
-      capitalize: function (str) {
-        return str.charAt(0).toUpperCase() + str.slice(1)
-      }
-    */
-    },
-    methods: {
-      sortBy: function (key) {
-        this.sortKey = key
-        this.sortOrders[key] = this.sortOrders[key] * -1
-      }
+  methods: {
+    sortBy: function (key) {
+      this.sortKey = key
+      this.sortOrders[key] = this.sortOrders[key] * -1
     }
-  })
+  }
+})
 
 // bootstrap the demo
 var demo = new Vue({
   el: '#demo',
   data: {
-    searchQuery: '',
-    gridRowNames: ['C4', 'D4', 'E4', 'F4', 'G4', 'A4', 'B4', 'C5'],
-    gridColumns: ["C4'", "D4'", "E4'", "F4'", "G4'", "A4'", "B4'", "C5'"],
-    gridData: [
-      { name: 'Chuck Norris', power: Infinity },
-      { name: 'Bruce Lee', power: 9000 },
-      { name: 'Jackie Chan', power: 7000 },
-      { name: 'Jet Li', power: 8000 }
-    ]
+    gridNumRowsCols: 4,
+    gridRowNames: ['C4', 'D4', 'E4', 'F4'],
+    gridColNames: ["C4'", "D4'", "E4'", "F4'"],
+    gridMatrix: [8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8]
   }
 })
