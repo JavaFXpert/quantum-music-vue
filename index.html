@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Quantum Music</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="scripts/vue.js"></script>
+  </head>
+
+  <body>
+    <!-- component template -->
+    <script type="text/x-template" id="matrix-template">
+      <table>
+        <thead>
+          <tr>
+            <th></th>
+            <th v-for="pitchName in columns">
+              {{pitchName}}
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="row in rownames">
+            <th>{{row}}</th><td v-for="col in 8">
+              {{((row - 1) * 8) + col - 1}}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </script>
+
+    <!-- demo root element -->
+    <div id="demo">
+      <demo-grid
+        :data="gridData"
+        :rownames="gridRowNames"
+        :columns="gridColumns">
+      </demo-grid>
+    </div>
+
+    <script src="grid.js"></script>
+
+  </body>
+</html>
