@@ -120,7 +120,6 @@ function computeStochasticMatrix() {
 // function to convert a vector containing degrees to radians
 function degreesToRadians(angleInDegrees) {
   var radians = angleInDegrees * (math.pi / 180);
-  //console.log("angleInDegrees: " + angleInDegrees + ", radians: " + radians);
   return radians;
 }
 
