@@ -117,6 +117,12 @@ var demo = new Vue({
   methods: {
     toggleuni: function () {
       showuni = !showuni;
+
+      //TODO: Find a way for the showuni variable to cause
+      // the computeStochasticMatrix() method to be run, instead of
+      // resorting to the following hack
+      angles[0].value = 359 - angles[0].value;
+      angles[0].value = 359 - angles[0].value;
     }
   }
 })
