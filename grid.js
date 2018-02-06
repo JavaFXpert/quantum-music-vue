@@ -31,7 +31,7 @@ var angles = [
 ]
 
 // Determines whether to show the unistochastic (squared) matrix
-var showuni = true;
+var showuni = false;
 
 // register the grid component
 Vue.component('demo-grid', {
@@ -42,30 +42,13 @@ Vue.component('demo-grid', {
     colnames: Array,
     //TODO: study how to be able to camel case rownames, etc. in Vue
     rownames: Array,
-    angles: Array,
-    showuni: Boolean
   },
-  /*
-  data: function () {
-  },
-  */
   computed: {
     matrixAsArray: function () {
-      //var mat = computeStochasticMatrix(angles, showUnistochasticMatrix);
-      var mat = computeStochasticMatrix();
-      if (showuni) {
-        mat = math.square(mat);
-      }
-      return mat.valueOf();
+      return computeStochasticMatrix().valueOf();
     }
   },
   methods: {
-    /*
-    sortBy: function (key) {
-      this.sortKey = key
-      this.sortOrders[key] = this.sortOrders[key] * -1
-    }
-    */
   }
 })
 
@@ -109,11 +92,9 @@ function computeStochasticMatrix() {
                                                         math.multiply(math.matrix([[1, 0, 0, 0, 0, 0, 0, 0], [0, 1, 0, 0, 0, 0, 0, 0], [0, 0, 1, 0, 0, 0, 0, 0], [0, 0, 0, 1, 0, 0, 0, 0], [0, 0, 0, 0, 1, 0, 0, 0], [0, 0, 0, 0, 0, math.cos(a[26]), 0, -math.sin(a[26])], [0, 0, 0, 0, 0, 0, 1, 0], [0, 0, 0, 0, 0, math.sin(a[26]), 0, math.cos(a[26])]]),
                                                           math.multiply(math.matrix([[1, 0, 0, 0, 0, 0, 0, 0], [0, 1, 0, 0, 0, 0, 0, 0], [0, 0, 1, 0, 0, 0, 0, 0], [0, 0, 0, 1, 0, 0, 0, 0], [0, 0, 0, 0, 1, 0, 0, 0], [0, 0, 0, 0, 0, 1, 0, 0], [0, 0, 0, 0, 0, 0, math.cos(a[27]), -math.sin(a[27])], [0, 0, 0, 0, 0, 0, math.sin(a[27]), math.cos(a[27])]]),
                                                             matrix))))))))))))))))))))))))))));
-  /*
   if (showuni) {
     rotatedMatrix = math.square(rotatedMatrix);
   }
-  */
   return rotatedMatrix;
 }
 
@@ -131,6 +112,11 @@ var demo = new Vue({
     gridRowNames: ['C4', 'D4', 'E4', 'F4', 'G4', 'A4', 'B4', 'C5'],
     gridColNames: ["C4'", "D4'", "E4'", "F4'", "G4'", "A4'", "B4'", "C5'"],
     angles: angles,
-    showuni: Boolean
+    showuni: showuni
+  },
+  methods: {
+    toggleuni: function () {
+      showuni = !showuni;
+    }
   }
 })
