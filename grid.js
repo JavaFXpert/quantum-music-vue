@@ -39,6 +39,7 @@ Vue.component('demo-grid', {
     colnames: Array,
     //TODO: study how to be able to camel case rownames, etc. in Vue
     rownames: Array,
+    angles: Array
   },
   /*
   data: function () {
@@ -62,6 +63,8 @@ Vue.component('demo-grid', {
     */
   }
 })
+
+// 
 
 // bootstrap the demo
 var demo = new Vue({
