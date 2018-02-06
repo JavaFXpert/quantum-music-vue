@@ -24,7 +24,7 @@
           <tr v-for="(rowArray, rowIdx) in matrixAsArray">
             <th>{{rownames[rowIdx]}}</th>
             <td v-for="(colNum, colIdx) in numrowscols">
-              {{matrixAsArray[rowIdx][colIdx]}}
+              {{parseFloat(Math.round(matrixAsArray[rowIdx][colIdx] * 10000) / 10000).toFixed(4)}}
             </td>
           </tr>
         </tbody>
